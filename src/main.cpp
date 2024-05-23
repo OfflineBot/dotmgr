@@ -18,7 +18,6 @@ void help_info() {
     printf("    set <theme_name>    load a theme\n");
     printf("    write <theme_name>  write active theme to destination\n");
     printf("    overwrite <theme_name> write active theme to destination\n");
-    printf("    override <theme_name> override a active theme\n");
     printf("    remove <theme_name> remove a theme\n");
     printf("\n");
     printf("included paths: \n");
@@ -150,7 +149,7 @@ int wrong_typing_confirm_again() {
 
 // sure u want to .......? (y/n)
 int are_you_sure_to(std::string doing_what) {
-    std::cout << "Are you sure you want to " << doing_what << std::endl;
+    std::cout << "Are you sure you want to " << doing_what << " (y/n): ";
     std::string result;
     std::cin >> result;
     if (result == "y") {
@@ -194,7 +193,7 @@ int set_theme(char *theme) {
         std::string dot_path = std::string(std::getenv("HOME")) + std::string("/.dotfiles/") + std::string(theme);
         std::string full = replaceAll(origin, "~", home_path);
         std::string target = replaceAll(origin, "~/.config", dot_path);
-
+        fs::remove_all(full);
         copy_dir(target, full);
     }
 
@@ -235,6 +234,7 @@ int overwrite_theme(char *theme) {
         std::string dot_path = std::string(std::getenv("HOME")) + std::string("/.dotfiles/") + std::string(theme);
         std::string full = replaceAll(origin, "~", home_path);
         std::string target = replaceAll(origin, "~/.config", dot_path);
+        fs::remove_all(target);
         copy_dir(full, target);
     }
 
@@ -258,7 +258,7 @@ int write_theme(char *theme) {
         return 1;
     } else {
         fs::create_directory(theme_file);
-        printf("created folder!\n");
+        printf("new folder at: ");
         std::cout << theme_file << std::endl;
     }
 
@@ -298,7 +298,7 @@ int remove_theme(char *theme) {
     std::string dot_dir = std::string(home_dir) + dot_folder + std::string(theme);
 
     if (fs::exists(dot_dir) && fs::is_directory(dot_dir)) {
-        fs::remove(dot_dir);
+        fs::remove_all(dot_dir);
         return 0;
     } else {
         printf("theme does not exist\n");
@@ -335,7 +335,7 @@ int main(int argc, char **argv) {
         int out = write_theme(argv[2]);
         if (out == 0) printf("ok\n");
     } 
-    else if (std::strcmp(argument, "override") == 0) {
+    else if (std::strcmp(argument, "overwrite") == 0) {
         if (argc != 3) return 0;
         int out = overwrite_theme(argv[2]);
         if (out == 0) printf("ok\n");
