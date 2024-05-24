@@ -23,8 +23,8 @@ void help_config() {
     printf("  examples:\n");
     printf("    # <text>            to create comments\n");
     printf("    ~/.config/hypr # <text> wont work. comment has to be at the beginning of each line\n");
-    printf("    ~/.config/hypr      will copy hypr folder to ~/dotfiles/themes/<theme_name>/hypr\n");
-    printf("    ~/.config/kitty     will copy kitty folder to ~/dotfiles/themes/<theme_name>/kitty\n");
+    printf("    ~/.config/hypr      will copy hypr folder to ~/.dotfiles/themes/<theme_name>/hypr\n");
+    printf("    ~/.config/kitty     will copy kitty folder to ~/.dotfiles/themes/<theme_name>/kitty\n");
     printf("\n");
     printf("(only ~/.config files where tested yet)\n");
 }
