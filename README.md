@@ -1,19 +1,14 @@
 # Requirements: 
-The script should have read and write permission. \\
+The script should have read and write permission.
 Its required to have the files stored in ```~/dotfiles``` like STOW
 # About dotmgr (dot-manager)
-This is a really simple theme manager for Linux. 
-It creates a ~/.dotfiles folder with a config.dot inside to put all the dotfiles inside. 
-It will create "backups" or saves in form of new folders in the ~/.dotfiles. Its just a simple copy of your setup in for example ~/.config/nvim/*. 
-You can add custom your own config files inside the config.dot file. 
-Each line represents a folder. 
-An example would be:
+Its a tool to manage files and folders. It can be a theme manager for desktops like Hyprland. 
+dotmgr creates a folder at ```~/.dotmgr``` with a ```config.dot``` and a ```themes``` folder.
+The themes will be saved in the themes folder and the config.dot is used for configuring which files will be saved.
+### Example usage for config.dot
 ```
-~/.config/hypr
-~/.config/nvim
-~/.config/kitty
+/.config/kitty
+/.config/hypr
+# this is a comment
+/.config/hypr # this does not work!
 ```
-Its important to add the full path (for now only the folders in .config are tested).
-To use the theme manager simply clone this repository. 
-Build the script with cmake or just run ```make``` and go into the ```build``` folder.
-To use it anywhere just set the path the the ```dotmgr``` file.
