@@ -2,16 +2,13 @@
 #include "../../include/dotmgr.hpp"
 
 int overwrite_theme(const char *theme_name) {
-    char *home_dir = std::getenv("HOME");
-    std::string home_dir_string = std::string(home_dir);
-    std::string config_dot_path = home_dir_string + std::string("/.dotfiles/config.dot");
 
-    if (!fs::exists(config_dot_path)) {
+    if (!fs::exists(DOT_CONFIG_PATH)) {
         printf("config.dot not found!\n");
         return 1;
     }
 
-    std::string theme_file = home_dir_string + std::string("/.dotfiles/themes/") + std::string(theme_name);
+    std::string theme_file = THEMES_FOLDER + std::string("/") + std::string(theme_name);
     if (!fs::exists(theme_file)) {
         printf("theme does not exist! use 'dotmgr list' to see the available themes\n");
         return 1;
@@ -27,9 +24,12 @@ int overwrite_theme(const char *theme_name) {
     confirm_action(message);
     for (int i = 0; i < folders.size(); i++) {
         std::string folder = folders[i];
-        std::string dotfiles_theme_path = home_dir_string + std::string("/.dotfiles/themes/") + std::string(theme_name);
-        std::string system_path = replace_string_by(folder, "~", home_dir_string);
-        std::string theme_path = replace_string_by(folder, "~/.config", dotfiles_theme_path);
+
+        std::string dotfiles_theme_path = THEMES_FOLDER + std::string("/") + std::string(theme_name);
+        std::string system_path = STOW_PATH + folder;
+        std::string theme_path = THEMES_FOLDER + std::string("/") + std::string(theme_name) + folder;
+
+
 
         fs::remove_all(theme_path);
         copy_item_to(system_path, theme_path);

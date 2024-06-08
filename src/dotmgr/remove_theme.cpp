@@ -11,13 +11,7 @@ int remove_theme(const char *theme_name) {
         return 1;
     }
 
-    const char *home_dir = std::getenv("HOME");
-    if (home_dir == nullptr) {
-        printf("couldnt get home directory\n");
-        return 1;
-    }
-
-    std::string dot_folder_path = std::string(home_dir) + std::string("/.dotfiles") + std::string(theme_name);
+    std::string dot_folder_path = THEMES_FOLDER + std::string("/") + std::string(theme_name);
 
     if (fs::exists(dot_folder_path) && fs::is_directory(dot_folder_path)) {
         fs::remove_all(dot_folder_path);

@@ -1,3 +1,7 @@
+# Requirements: 
+The script should have read and write permission. \\
+Its required to have the files stored in ```~/dotfiles``` like STOW
+# About dotmgr (dot-manager)
 This is a really simple theme manager for Linux. 
 It creates a ~/.dotfiles folder with a config.dot inside to put all the dotfiles inside. 
 It will create "backups" or saves in form of new folders in the ~/.dotfiles. Its just a simple copy of your setup in for example ~/.config/nvim/*. 

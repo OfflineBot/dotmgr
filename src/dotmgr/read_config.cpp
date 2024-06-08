@@ -4,17 +4,15 @@
 #include <fstream>
 
 std::vector<std::string> read_config() {
-    char *home_path = std::getenv("HOME");
-    std::string dot_config_file = std::string(home_path) + std::string("/.dotfiles/config.dot");
 
     std::vector<std::string> out;
 
-    if (!fs::exists(dot_config_file)) {
+    if (!fs::exists(DOT_CONFIG_PATH)) {
         printf("config.dot does not exist\n");
         return out;
     }
 
-    std::ifstream config_file(dot_config_file);
+    std::ifstream config_file(DOT_CONFIG_PATH);
 
     std::string line;
     if (config_file.is_open()) {

@@ -3,10 +3,9 @@
 #include <filesystem>
 
 void execute_reload_script() {
-    std::string home_dir = std::getenv("HOME");
-    std::string reload_script = std::string(home_dir) + std::string("/.dotfiles/reload.sh");
 
-    if (fs::exists(reload_script)) {
-        system(reload_script.c_str());
+    if (fs::exists(RELOAD_SCRIPT_PATH)) {
+        system(RELOAD_SCRIPT_PATH.c_str());
     }
+
 }

@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
         if (std::strcmp(argument1, "set") == 0) {
             set_theme(argument2);
             return 0;
-        } else if (std::strcmp(argument1, "save") == 0) {
+        } else if (std::strcmp(argument1, "write") == 0) {
             save_theme(argument2);
             return 0;
         } else if (std::strcmp(argument1, "overwrite") == 0) {

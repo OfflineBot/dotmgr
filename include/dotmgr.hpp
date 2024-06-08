@@ -3,6 +3,8 @@
 #include <filesystem>
 #include <string>
 #include <vector>
+#include <iostream>
+#include "globals.hpp"
 
 
 namespace fs = std::filesystem;
