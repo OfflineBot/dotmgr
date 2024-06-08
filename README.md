@@ -12,3 +12,11 @@ The themes will be saved in the themes folder and the config.dot is used for con
 # this is a comment
 /.config/hypr # this does not work!
 ```
+# How to install:
+To install run this:
+```
+git clone https://github.com/OfflineBot/dotmgr.git
+cd dotmgr
+make
+```
+the ```dotmgr``` file will be in ```/build/dotmgr```
